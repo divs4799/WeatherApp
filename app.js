@@ -17,7 +17,8 @@ app.get("/",(req,res)=>{
 
 app.post("/", async (req,res)=>{
     let city = req.body.city;
-    const response =  await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=eabb5a5e5a798c06931fe2d85a7975ff`);    
+    console.log(process.env.api)
+    const response =  await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.api}`);    
     const data =  await response.json();
     console.log(data)
     if(data.main == undefined){
@@ -36,20 +37,21 @@ app.post("/", async (req,res)=>{
         weather.feels = data.main.feels_like;
 
         
-        console.log(weather);
          const date = new Date();  
          const time = date.getHours(); 
-         let greet=""; 
+         let greet;
+
         if(time > 0 && time < 12)
         {greet = "Good Morning";}  
         else if(time >= 12 && time < 16 )
         {greet = "Good Afternoon";} 
          else if(time >= 16 && time < 21 )
          {greet = "Good Evening";} 
-        else if(time <= 21 && time <= 24)
+        else if(time >= 21 && time <= 24)
         {greet= "Good Night";} 
-
-
+        weather.hours = time;
+        weather.minutes = date.getMinutes();
+        
         res.render("form",{weather:weather,disp:true,greet:greet});
     }
 
