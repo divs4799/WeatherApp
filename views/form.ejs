@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Weather</title>
+</head>
+<body>
+    <div class="p-2 mb-4 bg-body-tertiary rounded-3 container">
+        <div class="container-fluid py-3">
+          <h1 class="display-5 fw-bold">Weather App</h1>
+          <form class="weather-form" action="" method="post"> 
+            <p class="fs-4">Enter City name:</p>
+            <p class="input-para col-md-8 fs-4">
+
+<input type="text" name="city" required>          
+<button class="btn btn-primary ms-3 btn-lg" type="submit">Find Weather</button>
+</p>
+        </form>
+        </div>
+      </div>
+<% if(disp){ %>
+
+
+    <section class="result-cont">
+      <!-- <h1 class="">Durg</h1> -->
+      <div class="left-cont">
+        <h1 class="left-heading" ><%= weather.cityName %></h1>
+        <div class="tempDiv">
+          <div class="temperature"><%= weather.temperature %>℃</div>
+          <h1 class="tempLabel"><%= weather.description %></h1>
+          <div class="windspeed">Wind Speed: <%= weather.windspeed %>mph</div>
+          <div class="humidity">Humidity: <%= weather.humidity %>%</div>
+        </div>
+      </div>
+      <div class="right-cont">
+        
+        <div class="greeting"><%=greet %></div>
+        <div class="time">12:27</div>
+        <div class="tempCont">
+
+        
+        <div class="minTemp">Min Temp: <%= weather.min %> </div>
+        <div class="maxTemp">Max Temp: <%= weather.max %> </div>
+        <div class="feelsLike">Feels Like: <%= weather.feels %> ℃</div>
+      </div>
+      </div>
+
+
+    </section>
+    <% }%>
+</body>
+</html>
